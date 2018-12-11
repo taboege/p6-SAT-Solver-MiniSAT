@@ -54,8 +54,8 @@ associated with the formula. MiniSAT does not produce a witness for
 satisfiability.
 
 Given a DIMACS cnf problem, it starts C<minisat>, feeds it the problem and
-return a Promise which will be kept with the C<SAT> answer found or broken on
-error.
+returns a Promise which will be kept with the C<SAT> answer found or broken
+on error.
 
 =head1 AUTHOR
 

@@ -17,7 +17,7 @@ DESCRIPTION
 
 SAT::Solver::MiniSAT wraps the `minisat` executable (bunled with the module) used to decide whether a satisfying assignment for a Boolean formula given in the `DIMACS cnf` format exists. This is known as the `SAT` problem associated with the formula. MiniSAT does not produce a witness for satisfiability.
 
-Given a DIMACS cnf problem, it starts `minisat`, feeds it the problem and return a Promise which will be kept with the `SAT` answer found or broken on error.
+Given a DIMACS cnf problem, it starts `minisat`, feeds it the problem and returns a Promise which will be kept with the `SAT` answer found or broken on error.
 
 AUTHOR
 ======
