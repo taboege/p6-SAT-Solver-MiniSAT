@@ -1,0 +1,16 @@
+  + Error handling. MiniSAT and some other solvers print predictable
+    messages in common error scenarios, like invalid DIMACS file.
+
+  + Unify interfaces. SAT::Solver should provide the standard role
+    for SAT solvers. Error types should be defined there as well.
+    Taking DIMACS input even overlaps with the other variants of
+    SAT solving.
+
+  + Configurability. Offer command-line options to callers.
+
+  + Maybe export a sub that hides the object creation and maybe
+    a version that automatically awaits the Promise.
+
+  + lingeling is another SAT solver which does produce a witness.
+    That is another module though. I wonder if MiniSAT just throws
+    its witness away and we can hack it not to.

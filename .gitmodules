@@ -1,0 +1,3 @@
+[submodule "src/minisat"]
+	path = src/minisat
+	url = https://github.com/niklasso/minisat
