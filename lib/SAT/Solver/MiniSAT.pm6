@@ -6,12 +6,14 @@ SAT::Solver::MiniSAT - SAT solver MiniSAT
 
 =head1 SYNOPSIS
 
-  use SAT::Solver::MiniSAT;
+=begin code
+use SAT::Solver::MiniSAT;
 
-  say minisat "t/aim/aim-100-1_6-no-1.cnf".IO, :now;
-  #= False
-  say minisat "t/aim/aim-100-1_6-yes1-1.cnf".IO, :now;
-  #= True
+say minisat "t/aim/aim-100-1_6-no-1.cnf".IO, :now;
+#= False
+say minisat "t/aim/aim-100-1_6-yes1-1.cnf".IO, :now;
+#= True
+=end code
 
 =head1 DESCRIPTION
 
