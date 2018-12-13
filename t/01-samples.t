@@ -1,5 +1,5 @@
 use Test;
-use Test::SAT::Solver;
+use Test::SAT;
 use SAT::Solver::MiniSAT;
 
 my $*SAT-SOLVER = MiniSAT;

@@ -1,38 +1,3 @@
-unit class SAT::Solver::MiniSAT is export;
-
-multi method solve (IO::Path $file --> Promise) {
-    self.solve: $file.lines
-}
-
-multi method solve (Str $DIMACS --> Promise) {
-    self.solve: $DIMACS.lines
-}
-
-multi method solve (List $lines --> Promise) {
-    self.solve: $lines.Supply
-}
-
-multi method solve (Seq $lines --> Promise) {
-    self.solve: $lines.Supply
-}
-
-multi method solve (Supply $lines --> Promise) {
-    my $out;
-    with my $proc = Proc::Async.new: :w, %?RESOURCES<minisat>, '-verb=0' {
-        $out = .stdout.lines;
-        .start and await .ready;
-        react whenever $lines -> $line {
-            .put: $line;
-            LAST .close-stdin;
-        }
-    }
-
-    $out.map({
-        m/^ <( 'UN'? )> 'SATISFIABLE' / ??
-            $/ ne "UN" !! Empty
-    }).Promise
-}
-
 =begin pod
 
 =head1 NAME
@@ -43,7 +8,10 @@ SAT::Solver::MiniSAT - SAT solver MiniSAT
 
   use SAT::Solver::MiniSAT;
 
-  say await MiniSAT.new.solve($my-cnf-file.IO)
+  say minisat "t/aim/aim-100-1_6-no-1.cnf".IO, :now;
+  #= False
+  say minisat "t/aim/aim-100-1_6-yes1-1.cnf".IO, :now;
+  #= True
 
 =head1 DESCRIPTION
 
@@ -56,6 +24,40 @@ satisfiability.
 Given a DIMACS cnf problem, it starts C<minisat>, feeds it the problem and
 returns a Promise which will be kept with the C<SAT> answer found or broken
 on error.
+
+=end pod
+
+use SAT;
+
+class SAT::Solver::MiniSAT does SAT::Solver is export {
+    multi method solve (Supply $lines, $witness is rw, *% () --> Promise) {
+        my $out;
+        with my $proc = Proc::Async.new: :w, %?RESOURCES<minisat>, '-verb=0' {
+            $out = .stdout.lines;
+            .start and await .ready;
+            react whenever $lines -> $line {
+                .put: $line;
+                LAST .close-stdin;
+            }
+        }
+
+        $out.map({
+            m/^ <( 'UN'? )> 'SATISFIABLE' / ??
+                $/ ne "UN" !! Empty
+        }).Promise.then({
+            # MiniSAT sadly doesn't provide a witness.
+            # TODO: Should hack that in.
+            $witness = Array[Bool];
+            .result
+        })
+    }
+}
+
+multi sub minisat (|c) is export {
+    SAT::Solver::MiniSAT.new.solve(|c)
+}
+
+=begin pod
 
 =head1 AUTHOR
 

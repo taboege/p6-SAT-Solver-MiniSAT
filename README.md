@@ -9,7 +9,10 @@ SYNOPSIS
 ``` perl6
 use SAT::Solver::MiniSAT;
 
-say await MiniSAT.new.solve($my-cnf-file.IO)
+say minisat "t/aim/aim-100-1_6-no-1.cnf".IO, :now;
+#= False
+say minisat "t/aim/aim-100-1_6-yes1-1.cnf".IO, :now;
+#= True
 ```
 
 DESCRIPTION
