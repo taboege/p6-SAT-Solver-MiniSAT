@@ -31,6 +31,9 @@ on error.
 
 use SAT;
 
+# XXX: Workaround for zef stripping execute bits on resource install.
+BEGIN sink with %?RESOURCES<minisat>.IO { .chmod: 0o100 +| .mode };
+
 class SAT::Solver::MiniSAT does SAT::Solver is export {
     multi method solve (Supply $lines, $witness is rw, *% () --> Promise) {
         my $out;

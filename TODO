@@ -1,3 +1,6 @@
+  + Determine how to keep the execute bit on the program when zef is
+    installing it. Then remove the BEGIN hack we're currently doing.
+
   + Error handling. MiniSAT and some other solvers print predictable
     messages in common error scenarios, like invalid DIMACS file.
 
