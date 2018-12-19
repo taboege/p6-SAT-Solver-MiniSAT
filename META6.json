@@ -2,7 +2,7 @@
   "name"                   : "SAT::Solver::MiniSAT",
   "version"                : "0.0.1",
   "perl"                   : "6.c",
-  "author"                 : "github:taboege",
+  "authors"                : "Tobias Boege",
   "description"            : "SAT solver MiniSAT",
   "tags"                   : [ ],
   "license"                : "Artistic-2.0",
@@ -13,7 +13,9 @@
     "make:from<bin>",
     "g++:from<bin>"
   ],
-  "test-depends"           : [ ],
+  "test-depends"           : [
+    "Test::META"
+  ],
   "resources"              : [
     "minisat"
   ],
