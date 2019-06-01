@@ -2,13 +2,16 @@
     installing it. Then remove the BEGIN hack we're currently doing.
 
   + Use the exit codes of MiniSAT instead of reading its output.
+  + This can also help with error handling. Is it enough or do we
+    have to capture its output?
 
-  + Error handling. MiniSAT and some other solvers print predictable
-    messages in common error scenarios, like invalid DIMACS file.
+  + Make all the diagnostic noise optional in my copy of MiniSAT.
+    Add an option to write a real DIMACS output file to stdout
+    instead of it, which also contains the model found in case
+    of SAT. MiniSAT can currently only emit the witness if you
+    provide a file (not "-") after the input file.
+  + Hack MiniSAT to understand my * convention for variable and
+    clause counts as "look for yourself". Add support for that
+    to the module, but still allow to work with standard MiniSAT.
 
   + Configurability. Offer command-line options to callers.
-
-  + Provide my own hack of MiniSAT which: produces a witness for
-    satisfiability, and can handle variable and clause count of 0,
-    meaning "look for yourself".
-  + Still allow working with the standard MiniSAT.
