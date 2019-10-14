@@ -1,3 +1,5 @@
+  + remove the :now adverb in favor of a dedicated method.
+
   + Determine how to keep the execute bit on the program when zef is
     installing it. Then remove the BEGIN hack we're currently doing.
 
@@ -12,6 +14,11 @@
     provide a file (not "-") after the input file.
   + Hack MiniSAT to understand my * convention for variable and
     clause counts as "look for yourself". Add support for that
-    to the module, but still allow to work with standard MiniSAT.
+    to the module.
 
+  + We ship our own version of MiniSAT with patches. In a future
+    version maybe also support system MiniSATs, but YAGNI unless
+    someone wants to use *their* patched MiniSAT with custom
+    features... Then we should support passing arbitrary named
+    args to the process.
   + Configurability. Offer command-line options to callers.

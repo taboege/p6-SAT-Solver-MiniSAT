@@ -22,5 +22,5 @@
   "provides"               : {
     "SAT::Solver::MiniSAT" : "lib/SAT/Solver/MiniSAT.pm6"
   },
-  "source-url"             : "git://github.com/taboege/p6-SAT-Solver-MiniSAT.git"
+  "source-url"             : "git://github.com/taboege/raku-SAT-Solver-MiniSAT.git"
 }
